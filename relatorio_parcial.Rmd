@@ -1,0 +1,105 @@
+---
+output: 
+  pdf_document:
+    latex_engine: xelatex
+geometry: margin=1in
+---
+\begin{titlepage}
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=2cm]{unicamp.png}
+\hspace{8cm}
+\includegraphics[width=2cm]{imecc.png}
+\end{center}
+\end{figure}
+
+\begin{center} 
+{\Large Universidade Estadual de Campinas}\\[0.2cm] 
+{\Large Instituto de Matemática, Estatística e Computação Científica}\\[0.2cm] 
+{\Large Departamento de Estatística}\\[0.2cm]
+\vspace{3cm}
+{\bf \LARGE Análise do potencial de utilização de fósforo de fontes orgânicas em Eucalyptus grandis e E. globulus: influência da micorriza arbuscular}\\ 
+\end{center}
+\vspace{2cm}
+
+\begin{table}[h]
+\begin{flushright} 
+{\Large Alunos}\\[0.1cm]
+{\Large Daniela Konno 169494}\\[0.1cm] 
+{\Large Jadson Rodrigo Silva de Oliveira 218405}\\[0.1cm] 
+{\Large Maria Júlia de Lima Silva 184181}\\[0.1cm]
+{\Large Mateus Trentini 217290}\\[0.1cm]
+{\Large Matheus Eduardo Baruta Lima 241717}\\[0.1cm]
+\end{flushright}
+\end{table}
+
+\vspace{1cm}
+
+\begin{center}
+{\Large Professora Supervisora Samara Flamini Kiihl}\\[0.1cm] 
+{\Large Pesquisadora Sara Adrian Lopez de Andrade}\\[0.1cm] 
+{\Large Colaborador Leonardo Souza de Andrade}\\[0.1cm]
+\end{center}
+
+\vspace{1cm}
+
+\begin{center}
+{\Large Setembro 2023}\\[0.1cm]
+{\Large Cidade Universitária Zeferino Vaz}\\[0.1cm]
+{\Large Campinas}
+\end{center}
+\end{titlepage}
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section{1. Introdução}
+
+\section{2. Objetivo}
+O objetivo deste projeto é analisar o efeito de três fatores - espécies de eucaliptos, presença de micorriza e fontes de fósforo - em medidas de crescimento, morfologia de raiz, atividade de enzimas, colonização micorrízica de raízes, concentração de elementos na planta e métricas de eficiência de funções. A identificação dos efeitos possibilita estudar possíveis diferenças na utilização das diversas fontes de fósforo adicionadas à planta dependendo da inoculação do fungo ou da espécie de eucalipto.
+
+\section{3. Medologia}
+Foi disponibilizado um banco de dados com informações referentes à duas espécies de eucaliptos, presença ou ausência de micorriza, fontes de fósforo, medidas de crescimento, medidas de morfologia de raiz, medidas de atividades enzimáticas, medidas de colonização micorrízica de raízes, concentração de elementos nas plantas e medidas de eficiência de funções em plantas. Os dados foram coletados a partir de um experimento conduzido em casa de vegetação com delineamento totalmente ao acaso e organizadoem um esquema de fatorial triplo. 
+
+\section{4. Resultados}
+
+\subsection{4.1 Análise Descritiva dos Dados}
+O banco de dados pode ser dividido em duas partes: dados do experimento com 10 repetições e dados do experimento com 5 repetições. O primeiro conjunto de dados possui 280 observações (parcelas experimentais) e 13 variáveis:
+\begin{itemize}
+  \item Esp: espécie (Eucalyptus grandis e E. globulus);
+  \item Micorriza: presença (M) ou ausência (NM) de micorriza;
+  \item Fonte: fontes (G, F, R, A, N, C, Fe)
+  \item Repet: índice da repetição (1 à 10)
+  \item antocianinas: pigmentos vermelhos medidos nas folhas das plantas;
+  \item clorofila: pigmentos verdes medidos nas folhas das plantas;
+  \item flavonois: pigmentos amarelados medidos nas folhas das plantas;
+  \item NBI: balanço interno de nitrogênio;
+  \item conteudo de P mg planta -1: conteúdo de fósforo das plantas;
+  \item conc P g/kg: conteúdo de fósforo das plantas;
+  \item PUE: eficiência de uso de fósforo;
+  \item PUpE: eficiência de absorção de fósforo;
+  \item fosfatase micélio: atividade das enzimas fosfatases (que liberam fósforo de fontes orgânicas) secretadas pelo fungo micorrízico.
+\end{itemize}
+
+\indent O segundo conjunto de dados possui 140 observações e 12 variáveis:
+
+\begin{itemize}
+  \item Esp: espécie (Eucalyptus grandis e E. globulus);
+  \item Micorriza: presença (M) ou ausência (NM) de micorriza;
+  \item Fonte: fFontes (G, F, R, A, N, C, Fe)
+  \item Repet: índice da repetição (1 à 5)
+  \item area sup (cm2): área superficial das raízes das plantas;
+  \item AvgDiam(mm): diâmetro médio das raízes das plantas;
+  \item root length: root length;
+  \item root dry weight (g): peso seco das raízes das plantas, também pode ser considerado como biomassa radicular;
+  \item dry weight shoot (g): peso seco da parte aérea das plantas, também pode ser considerado como biomassa da parte aérea;
+  \item cont N: conteúdo de nitrogênio das plantas;
+  \item Fitase ng Pi/cm2/min: atividade da enzima fitase (que libera fósforo do fitato) secretada pelas raízes das plantas;
+  \item rAPase: atividade das enzimas fosfatases ácidas (que liberam fósforo de fontes orgânicas) secretadas pelas raízes das plantas.
+\end{itemize}
+
+\subsection{4.2 Análise Exploratória dos Dados}
+

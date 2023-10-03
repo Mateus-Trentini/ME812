@@ -1,0 +1,136 @@
+---
+title: "Análise Descritiva Consultoria 2"
+author: "Jadson Rodrigo"
+date: "2023-09-18"
+output:
+  pdf_document: default
+---
+
+```{r setup,warning=FALSE,message=FALSE, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+```{r,warning=FALSE,message=FALSE}
+library("ggpubr")
+```
+
+
+```{r,message=FALSE,warning=FALSE,warning=FALSE}
+library(tidyverse)
+```
+```{r,warning=FALSE,message=FALSE}
+library(readxl)
+```
+
+```{r,warning=FALSE,message=FALSE}
+library(kableExtra)
+```
+
+
+```{r,warning=FALSE,message=FALSE}
+library("patchwork")
+```
+
+```{r}
+dadosplantas<-read_excel("Dados.xlsx",sheet="5 reps")
+```
+
+Para o conjunto de dados com 5 replicações, é importante questionar se existe diferença nas variáveis em relação a Espécie, à presença ou não de Micorriza e à fonte. Para que essa pergunta seja respondida, construimos gráficos de boxplot para estudar a relação entre as variáveis qualitativa e quantitativas.
+
+Da figura 1, tem-se que para a presença de Micorriza, com excessão da fonte Fe, a quantidade de nitrôgeneo tem maior mediana para a espécie Grandis. Enquanto que quando não ocorre a presença de Micorriza tem-se uma tendência na maioria das fontes a ter uma maaior mediana para as espécies Globulus. Da figura 1 observa-se também uma forte presença de outliers.
+
+```{r,fig.cap="Quantidade de Nitrôgeneo por Micorriza,Espécie e Fonte"}
+dadosplantas%>%ggplot(aes(as.factor(Fonte),`cont N`,fill=Esp))+geom_boxplot()+ggtitle("Cont N")+xlab("Fonte")+ylab("Cont N")+labs(fill="Espécie")+scale_fill_manual(values =
+                      c("darkorchid4", "brown2"))+facet_wrap(~Micorriza)
+```
+
+Da figura 2, tem-se que a combinação das variáveis Fonte e Micorriza exerce uma forte influência na mediana da variável área sup, pois de acordo com a Fonte e Micorriza, a mediana da área superficial das raízes na espécie Globulus é maior ou menor do que a mediana da espécie Grandis. 
+
+Ademais, da figura 2 observa-se também que a combinação das variável Fonte e Micorriza influenciam de forma significativa na mediana da área sup em cada espécie. Por exemplo, ao analisar a tabela 2 tem-se que a mediana para espécie Globulus na Fonte A é de 94.85 na presença de Micorriza, enquanto que para a mesma fonte e espécie na ausência de Micorriza a mediana é de 107.94. Outro exemplo, para a fonte F na presença de Micorriza, a mediana para a espécie Globulus é de de 60.33, enquanto que na ausência de Micorriza a mediana é de 101.47. O que indica que existirá interação entre as três variáveis qualitativas no modelo de MANOVA que será construido. 
+
+
+```{r,fig.cap="Área superficial das raízes  por Micorriza,Espécie e Fonte"}
+dadosplantas%>%ggplot(aes(as.factor(Fonte),`area sup (cm2)`,fill=Esp))+geom_boxplot()+ggtitle("Área Sup")+scale_fill_manual(values =
+                      c("darkorchid4", "brown2"))+xlab("Fonte")+labs(fill="Espécie")+facet_wrap(~Micorriza)
+```
+
+Para a variável AvgDiam(mm), observa-se que a mediana do diâmetro médio para a espécie Globulus tende a ser maior do que que para a espécie Grandis na maioria das fontes, independente da presença ou ausência de Micorriza. Além disso, da figura 3 nota-se a presença de alguns pontos outliers. 
+
+
+```{r,fig.cap="Diâmetro Médio por Micorriza,Espécie e Fonte"}
+dadosplantas%>%ggplot(aes(as.factor(Fonte),`AvgDiam(mm)`,fill=Esp))+geom_boxplot()+ggtitle("AvgDiam(mm)")+xlab("Fonte")+labs(fill="Espécie")+scale_fill_manual(values = c("darkorchid4", "brown2"))+facet_wrap(~Micorriza)
+```
+
+
+De acordo com o gráfico 4, temos que a combinação das variáveis Fonte e Micorriza influencia de forma significativa para o comprimento das raízes (root length) em cada espécie, pois em algumas fontes e presença/ausência de Micorriza a mediana de rooth é maior para a espécie Grandis do que para a espécie Globulus, ocorrendo o inverso também. Observa-se também uma grande presença de pontos outliers na variável root length. 
+
+Além disso, temos que de acordo com a presença ou não de Micorriza, há uma significativa diferença na mediana da variável root length. Por exemplo, ao observar a tabela 4, para a fonte N e espécie Globulus na presença de Micorriza a mediana é de 1528, enquanto que para a mesma fonte e espécie na ausência de Micorriza a mediana é de 1190. 
+
+
+```{r,fig.cap="root length por Micorriza, Espécie e Fonte"}
+dadosplantas%>%ggplot(aes(as.factor(Fonte),`root length`,fill=Esp))+geom_boxplot()+ggtitle("Root Length")+xlab("Fonte")+labs(fill="Espécie")+scale_fill_manual(values =
+                      c("darkorchid4", "brown2"))+facet_wrap(~Micorriza)
+```
+
+Da figura 5, temos que na presença de Micorriza, há uma tendência de a mediana da variável Dry Weight Shoot ser maior para a espécie Grandis em comparação a espécie Globulus. Enquanto que na ausência de Micorriza, o efeito da espécie não parece ser muito significativo. Observa-se também a presença de pontos outliers na variável Dry Weight Shoot. 
+
+Além disso, ao analisar o gráfico da figura 5, podemos observar que para uma mesma espécie e uma mesma fonte, o efeito da presença ou não de Micorriza é significativo na variável Dry Weight Shoot. Por exemplo, da tabela 5 temos que para a fonte R e espécie Globulos na presença de Micorriza a mediana para a variável Dry Weight Shoot é de 0.24, enquanto que na ausência é de 0.03. Para a espécie Grandis e fonte Fe na presença de Micorriza a mediana da variável Dry Weight Shoot é de 0.40, enquanto que na ausência de Micorriza a mediana é de 0.06. 
+
+```{r,warning=FALSE,fig.cap="Dry Weight Shoot por Micorriza,Espécie e Fonte"}
+dadosplantas%>%ggplot(aes(as.factor(Fonte),`dry weight shoot (g)`,fill=Esp))+geom_boxplot()+ggtitle("Dry Weight Shoot(g) ")+xlab("Fonte")+labs(fill="Espécie")+scale_fill_manual(values =
+                      c("darkorchid4", "brown2"))+facet_wrap(~Micorriza)
+```
+
+Para a figura 6 tem-se que a combinação das variáveis Fonte e Micorriza influencia na Atividade de Enzima Fitase para as espécies, pois conforme a figura temos que em algumas combinações a mediana para a Fitase é maior na espécie Globulus em comparação a espécie Grandis, ocorrendo o inverso também. Observa-se também a presença de alguns pontos outliers na variável de atividade de Enzima. 
+
+```{r,fig.cap="Atividade da Enzima Fitase por Micorriza,Espécie e Fonte"}
+dadosplantas%>%ggplot(aes(as.factor(Fonte),`Fitase ng Pi/cm2/min`,fill=Esp))+geom_boxplot()+ggtitle("Fitase ng Pi/cm2/min ")+xlab("Fonte")+labs(fill="Espécie")+scale_fill_manual(values =
+                      c("darkorchid4", "brown2"))+facet_wrap(~Micorriza)
+```
+
+Da figura 7 observa-se que na presença de Micorriza a combinação das variáveis Fonte e Micorriza influencia na Atividade das Enzimas Fosfotases para as espécies, pois conforme a figura temos que em algumas combinações a mediana para a rApase é maior na espécie Globulus em comparação a espécie Grandis, ocorrendo o inverso também. Enquanto na ausência de Micorriza, a mediana da espécie Globulus tende a ser maior em comparação a espécie Grandis. Da variável rApase é possivel também a forte presença de pontos outliers. 
+
+
+```{r,fig.cap="Atividade das Enzimas Fosfotases por Micorriza,Espécie e Fonte"}
+dadosplantas%>%ggplot(aes(as.factor(Fonte),`rAPase`,fill=Esp))+geom_boxplot()+ggtitle("rAPase")+xlab("Fonte")+labs(fill="Espécie")+scale_fill_manual(values =
+                      c("darkorchid4", "brown2"))+facet_wrap(~Micorriza)
+```
+
+```{r,message=FALSE,warning=FALSE}
+estatisticacontN<-dadosplantas%>%group_by(Micorriza,Esp,Fonte)%>%summarise(Mínimo=round(min(`cont N`),2),Média=round(mean(`cont N`),2),Mediana=round(median(`cont N`),2),Máximo=round(max(`cont N`),2),Variância=round(var(`cont N`),2),Desvio_Padrão=round(sd(`cont N`),2))
+estatisticacontN%>%kable(caption = "Estatística Descritiva cont N por Micorriza,Espécie e Fonte")%>%kable_styling(latex_options=c("HOLD_position"))
+```
+
+```{r,message=FALSE,warning=FALSE}
+estatisticaareasupcm2<-dadosplantas%>%group_by(Micorriza,Esp,Fonte)%>%summarise(Mínimo=round(min(`area sup (cm2)`),2),Média=round(mean(`area sup (cm2)`),2),Mediana=round(median(`area sup (cm2)`),2),Máximo=round(max(`area sup (cm2)`),2),Variância=round(var(`area sup (cm2)`),2),Desvio_Padrão=round(sd(`area sup (cm2)`),2))
+estatisticaareasupcm2%>%kable(caption = "Estatística Descritiva area sup (cm2) por Micorriza,Espécie e Fonte")%>%kable_styling(latex_options=c("HOLD_position"))
+```
+
+```{r,message=FALSE,warning=FALSE}
+estatisticaAvgDiammm<-dadosplantas%>%group_by(Micorriza,Esp,Fonte)%>%summarise(Mínimo=round(min(`AvgDiam(mm)`),2),Média=round(mean(`AvgDiam(mm)`),2),Mediana=round(median(`AvgDiam(mm)`),2),Máximo=round(max(`AvgDiam(mm)`),2),Variância=round(var(`AvgDiam(mm)`),4),Desvio_Padrão=round(sd(`AvgDiam(mm)`),2))
+estatisticaAvgDiammm%>%kable(caption = "Estatística Descritiva área AvgDiam(mm) por Micorriza,Espécie e Fonte")%>%kable_styling(latex_options=c("HOLD_position"))
+```
+
+```{r,message=FALSE,warning=FALSE}
+estatisticarootlength<-dadosplantas%>%group_by(Micorriza,Esp,Fonte)%>%summarise(Mínimo=round(min(`root length`),2),Média=round(mean(`root length`),2),Mediana=round(median(`root length`),2),Máximo=round(max(`root length`),2),Variância=round(var(`root length`),2),Desvio_Padrão=round(sd(`root length`),2))
+estatisticarootlength%>%kable(caption = "Estatística Descritiva área root length por Micorriza,Espécie e Fonte")%>%kable_styling(latex_options=c("HOLD_position"))
+```
+
+```{r,message=FALSE,warning=FALSE}
+estatisticadryweightshoot<-dadosplantas%>%group_by(Micorriza,Esp,Fonte)%>%summarise(Mínimo=round(min(`dry weight shoot (g)`),2),Média=round(mean(`dry weight shoot (g)`),2),Mediana=round(median(`dry weight shoot (g)`),2),Máximo=round(max(`dry weight shoot (g)`),2),Variância=round(var(`dry weight shoot (g)`),2),Desvio_Padrão=round(sd(`dry weight shoot (g)`),2))
+estatisticadryweightshoot%>%kable(caption = "Estatística Descritiva dry weight shoot por Micorriza,Espécie e Fonte")%>%kable_styling(latex_options=c("HOLD_position"))
+```
+
+```{r,message=FALSE,warning=FALSE}
+estatisticaFitasengPi<-dadosplantas%>%group_by(Micorriza,Esp,Fonte)%>%summarise(Mínimo=round(min(`Fitase ng Pi/cm2/min`),2),Média=round(mean(`Fitase ng Pi/cm2/min`),2),Mediana=round(median(`Fitase ng Pi/cm2/min`),2),Máximo=round(max(`Fitase ng Pi/cm2/min`),2),Variância=round(var(`Fitase ng Pi/cm2/min`),2),Desvio_Padrão=round(sd(`Fitase ng Pi/cm2/min`),2))
+estatisticaFitasengPi%>%kable(caption = "Estatística Descritiva Fitase ng Pi/cm2/min por Micorriza,Espécie e Fonte")%>%kable_styling(latex_options=c("HOLD_position"))
+```
+
+```{r,message=FALSE,warning=FALSE}
+estatisticarAPase<-dadosplantas%>%group_by(Micorriza,Esp,Fonte)%>%summarise(Mínimo=round(min(`rAPase`),2),Média=round(mean(`rAPase`),2),Mediana=round(median(`rAPase`),2),Máximo=round(max(`rAPase`),2),Variância=round(var(`rAPase`),2),Desvio_Padrão=round(sd(`rAPase`),2))
+estatisticaFitasengPi%>%kable(caption = "Estatística Descritiva rAPase por Micorriza,Espécie e Fonte")%>%kable_styling(latex_options=c("HOLD_position"))
+```
+
+
+
